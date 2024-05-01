@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor game</title>
+    <style>
+        *
+        {
+            padding: 0px;
+            margin: 0px;
+            outline: 0;
+        }
+        h2{
+            text-align: center;
+            background-color: black;
+            color: white;
+            height: 8vh;
+            padding-top: 30px;
+        }
+        .imgs
+        {
+            margin: auto;
+            display: flex;
+            width: 70%;
+            height: 50vh;
+            justify-content: space-evenly;
+            align-items: center;  
+        }
+        .imgs img
+        {
+            width: 200px;
+            height: 180px;
+            border-radius: 30%;
+            border: 2px solid black;
+            background-color: white;
+           
+        }
+        .imgs img:hover
+        {
+            border: 10px solid orange;
+            cursor: pointer;
+        }
+       
+        body
+        {
+            background-color: rgb(193, 246, 246);
+        }
+        .compscore
+        {
+            position: absolute;
+            width: 250px;
+            height: 100px;
+            background-color: rgb(43, 226, 98);
+            top: 65%;
+            left: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            font-size: 25px;
+            border-radius: 30px;
+        }
+        .userscore
+        {
+            position: absolute;
+            width: 250px;
+            height: 100px;
+            background-color: rgb(43, 226, 98);
+            top: 65%;
+            right: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            font-size: 25px;
+            border-radius: 30px;
+        }
+        .msg p 
+        {
+            background-color: black;
+            color: white;
+            display: inline;
+            padding: 10px;
+            font-size: 25px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 100px;
+            left: 44%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h2>Rock Paper Scissor Game</h2>
+
+    </div>
+    <div class="imgs">
+        <div class="rock" id="rock"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcmTi0_Qkk3aks73xCCQRBa53TiiI7QOrAvQ&usqp=CAU" alt=""></div>
+        <div class="paper" id="paper"><img src="paper.png" alt=""></div>
+        <div class="scissor" id="scissor"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDagJm24HyFyrEH56bEUAkCQJiPX4RQv2eow&usqp=CAU" alt=""></div>
+    </div>
+    <div class="compscore">
+        <p>0</p>
+        <div>You</div>
+    </div>
+    <div class="userscore">
+        <p>0</p>
+        <div>Computer</div>
+    </div>
+    <div class="msg">
+        <p id="msgs">Play your Game</p>
+    </div>
+    <script>
+         let a1=document.querySelector(".compscore p")
+         let a2=document.querySelector(".userscore p")
+        let m=document.querySelector(".msg p")
+        let b1=document.querySelectorAll(".imgs div")[0]
+        let b2=document.querySelectorAll(".imgs div")[1]
+        let b3=document.querySelectorAll(".imgs div")[2]
+        function drawGame()
+        {
+            console.log("game is draw")
+            m.innerText="Game Draw!"
+        }
+        function compChoice()
+        {
+            let arr=["rock","paper","scissor"]
+            let ind=Math.floor(Math.random()*3)
+            return arr[ind]
+        } var uu=0
+            var cc=0
+        
+        function dispwin(u)
+        {
+           
+            if(u)
+            {
+                uu++
+                a1.innerText=uu
+                m.innerText="You Win!"
+                console.log("WIN")
+
+            }
+            else{cc++
+                a2.innerText=cc
+                
+                console.log("LOSS")
+                m.innerText="You Loss!"
+              
+                m.style.backGroundColor="red"
+            }
+        }
+        function playGame(userchoice)
+        {
+            console.log("user choice=",userchoice)
+            let cchoice=compChoice()
+            console.log("computer choice=",cchoice)
+            if(userchoice===cchoice)
+            {
+                drawGame()
+            }
+            else
+            {
+                let uc=true;
+                if(userchoice==="rock")
+                {
+                    uc=cchoice==="paper"?false:true
+                   
+                }
+             
+                else if(userchoice==="paper")
+                {
+                    uc=cchoice==="scissor"?false:true
+                    
+                }
+                else
+                {
+                    uc=cchoice==="rock"?false:true
+                    
+                }
+               dispwin(uc)
+            }
+           
+        }
+        b1.addEventListener("click",function()
+        {
+            let idi=this.getAttribute("id")
+           
+            playGame(idi)
+        })
+        b2.addEventListener("click",function()
+        {
+            let idi=this.getAttribute("id")
+         
+            playGame(idi)
+        })
+        b3.addEventListener("click",function()
+        {
+            let idi=this.getAttribute("id")
+           
+            playGame(idi)
+        })
+        
+
+    </script>
+ 
+    
+    
+</body>
+</html>
